@@ -18,6 +18,7 @@ on:
         options:
           - unifreq
           - codesnas
+          - yhpgi
       kernel_version:
         description: "Select kernel version"
         required: false
@@ -76,7 +77,7 @@ on:
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -yhpgi
 
 env:
   TZ: America/New_York
