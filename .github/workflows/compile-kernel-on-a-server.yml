@@ -13,11 +13,12 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "unifreq"
+        default: "yhpgi"
         type: choice
         options:
           - unifreq
           - codesnas
+          - yhpgi
       kernel_version:
         description: "Select kernel version"
         required: false
@@ -86,7 +87,7 @@ on:
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -yhpgi
 
 env:
   TZ: America/New_York
