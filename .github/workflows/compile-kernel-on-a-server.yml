@@ -2,6 +2,7 @@
 # Description: Compile the kernel on a server
 # Copyright (C) 2021 https://github.com/unifreq/openwrt_packit
 # Copyright (C) 2021 https://github.com/ophub/amlogic-s9xxx-armbian
+# Copyright (C) 2025 https://github.com/yhpgi/amlogic-s9xxx-armbian
 #==========================================================================
 
 name: Compile the kernel on a server
@@ -13,9 +14,10 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "unifreq"
+        default: "yhpgi"
         type: choice
         options:
+          - yhpgi
           - unifreq
           - codesnas
       kernel_version:
@@ -77,11 +79,11 @@ on:
       kernel_sign:
         description: "Set the kernel custom signature"
         required: false
-        default: "-ophub"
+        default: "-yhpgi"
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -yhpgi
 
 env:
   TZ: Etc/UTC
@@ -159,8 +161,8 @@ jobs:
         run: |
           df -hT ${PWD}
           mkdir -p /builder/{kernel,output,ccache}
-          ln -sf /builder/kernel /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/kernel
-          ln -sf /builder/output /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/output
+          ln -sf /builder/kernel /home/runner/work/_actions/yhpgi/amlogic-s9xxx-armbian/main/compile-kernel/kernel
+          ln -sf /builder/output /home/runner/work/_actions/yhpgi/amlogic-s9xxx-armbian/main/compile-kernel/output
           ln -sf /builder/ccache /home/runner/.ccache
           echo "status=success" >> ${GITHUB_OUTPUT}
 
@@ -173,7 +175,7 @@ jobs:
             kernel-${{ inputs.kernel_version }}-${{ inputs.kernel_toolchain }}-
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: yhpgi/amlogic-s9xxx-armbian@main
         if: ${{ steps.mapped.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
