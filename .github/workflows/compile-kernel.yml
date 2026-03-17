@@ -18,6 +18,7 @@ on:
         options:
           - unifreq
           - ophub
+          - yhpgi
       kernel_version:
         description: "Select kernel version"
         required: false
@@ -28,6 +29,7 @@ on:
           - 5.15.y
           - 6.1.y
           - 6.6.y
+          - 6.6.z
           - 6.12.y
           - 6.18.y
       kernel_auto:
@@ -81,7 +83,7 @@ on:
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -yhpgi
 
 env:
   TZ: Etc/UTC
